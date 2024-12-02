@@ -1,6 +1,7 @@
 import unittest
 
-from htmlnode import HTMLNode, LeafNode, ParentNode
+from htmlnode import HTMLNode, LeafNode, ParentNode, text_node_to_html_node
+from textnode import TextType, TextNode
 
 class TestHTMLNode(unittest.TestCase):
     def test_props_to_html(self):
@@ -87,7 +88,13 @@ class TestHTMLNode(unittest.TestCase):
             "<div><span><b>grandchild</b></span></div>",
         )
 
-
+    def test_text_node_to_html_node(self):
+        text_node = TextNode("Hello world Hahaha", TextType.NORMAL_TEXT)
+        html_node = text_node_to_html_node(text_node)
+        self.assertEqual(
+            html_node.value,
+            "Hello world Hahaha"
+        )
 
 
 if __name__ == "__main__":

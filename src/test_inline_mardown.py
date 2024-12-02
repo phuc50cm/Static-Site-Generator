@@ -1,4 +1,4 @@
-from inline_mardown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_link, split_nodes_image, text_to_textnodes
+from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_link, split_nodes_image, text_to_textnodes
 from textnode import TextNode, TextType
 import unittest
 
@@ -135,4 +135,9 @@ class TestNodesParser(unittest.TestCase):
                 TextNode(" and a ", TextType.NORMAL_TEXT),
                 TextNode("link", TextType.LINK_TEXT, "https://boot.dev"),
             ],
+        )
+        nodes_2 = text_to_textnodes("Hello world Hahaha")
+        self.assertEqual(
+            nodes_2,
+            [TextNode("Hello world Hahaha", TextType.NORMAL_TEXT)]
         )
